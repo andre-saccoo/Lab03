@@ -20,7 +20,6 @@ class Autonoleggio:
 
     def aggiungi_automobile(self, marca, modello, anno, num_posti, ):
         """Aggiunge un'automobile nell'autonoleggio: aggiunge solo nel sistema e non aggiorna il file"""
-        # TODO
         id=f"A+{len(self.listaAutomobili)+1}"
         marca=input("inserire la marca dell'automobile: ")
         modello=input("inserire la modello dell'automobile: ")
