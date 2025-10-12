@@ -7,6 +7,8 @@ class Autonoleggio:
         self._responsabile = responsabile
         self.listaAutomobili = []
 
+
+
     def carica_file_automobili(self, file_path):
         try:
             infile=open(file_path, 'r')

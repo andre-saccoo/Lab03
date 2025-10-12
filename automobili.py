@@ -1,6 +1,3 @@
-import csv
-from enum import nonmember
-
 class Automobile:
     def __init__(self,id, marca, modello, anno, numPosti):
         self._id = id
@@ -45,4 +42,4 @@ class Automobile:
         self._numPosti = value
 
     def __str__(self):
-        return f'identificatore macchina:{self.id},marca:{self.marca}, modello:{self.modello},anno: {self.anno},numero posti{self.numPosti}'
+        return f'identificatore macchina: {self.id}, marca: {self.marca}, modello: {self.modello}, anno: {self.anno}, numero posti: {self.numPosti}'
