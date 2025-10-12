@@ -1,4 +1,6 @@
 from autonoleggio import Autonoleggio
+from automobili import Automobile
+from noleggio import Noleggio
 from datetime import datetime
 
 def menu():
