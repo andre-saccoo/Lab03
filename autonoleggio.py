@@ -104,7 +104,7 @@ class Autonoleggio:
             if n.CodiceNoleggio == id_noleggio:
                 noleggioTrovato = n
                 break
-        if noleggioTrovato is not None:
+        if noleggioTrovato is None:
             raise ValueError(f"Nessun noleggio trovato con codice '{id_noleggio}'.")
         self.automobile.disponibile=True
         self.listaNoleggio.remove(noleggioTrovato)
