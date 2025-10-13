@@ -1,4 +1,6 @@
 import csv
+from enum import nonmember
+
 from automobili import Automobile
 from noleggio import Noleggio
 
@@ -96,5 +98,15 @@ class Autonoleggio:
         #restituisco il nuovo noleggio
         return noleggio
 
+# creo la funzione che termina il noleggio e rende di nuovo disponibile la macchina per altri noleggi
     def termina_noleggio(self, id_noleggio):
-        pass
+        noleggioTrovato = None
+        for n in self.listaNoleggio:
+            if n.CodiceNoleggio == id_noleggio:
+                noleggioTrovato = n
+                break
+        if noleggioTrovato is not None:
+            raise ValueError(f"Nessun noleggio trovato con codice '{id_noleggio}'.")
+        self.automobile.disponibile=True
+        self.listaNoleggio.remove(noleggioTrovato)
+        print(f"il noleggio {id_noleggio} è terminato, l'automobile è nuovamente disponibile")
