@@ -65,26 +65,24 @@ class Autonoleggio:
     # definisco la funzione che gestisce i nuovi noleggi, inseriti in una lista di oggetti noleggio definita sopra
     # la funzione controlla che la moto sia noleggiabile, se è disponibile dopo averla presa la rende non disponibile
     def nuovo_noleggio(self, data, id_automobile, cognome_cliente):
-        trovato=False
         automobile=None
 
         #scorro i codici delle auto e li confronto se la trovo esco dal ciclo
         #perchè l'auto è presente nel sistema
         for a in self.listaAutomobili:
             if a.id == id_automobile:
-                trovato=True
                 automobile=a
                 break
 
         #se non trova l'automobile lo segnala
-        if  not trovato:
+        if automobile is None:
             raise Exception(f"Automobile {id_automobile} non presente nel sistema! ")
 
         # se l'automobile è presente ma già noleggiata
         if not automobile.disponibile:
             raise ValueError(f" Automobile {id_automobile} già noleggiata! ")
 
-        #se i controlli sono superati
+        #se i controlli sono superati creo un nuovo codice univoco
         self.codiceNoleggio += 1
         codice = f"N{self.codiceNoleggio}"
         noleggio=Noleggio(data, id_automobile, cognome_cliente, codice)
@@ -98,14 +96,32 @@ class Autonoleggio:
         return noleggio
 
 # creo la funzione che termina il noleggio e rende di nuovo disponibile la macchina per altri noleggi
-    def termina_noleggio(self, id_noleggio):
+    def termina_noleggio(self, codice_noleggio):
         noleggioTrovato = None
+        #cerco il noleggio con quel codice
         for n in self.listaNoleggio:
-            if n.CodiceNoleggio == id_noleggio:
+            if n.CodiceNoleggio == codice_noleggio:
                 noleggioTrovato = n
                 break
+
+        #se non esiste restituisco errore
         if noleggioTrovato is None:
-            raise ValueError(f"Nessun noleggio trovato con codice '{id_noleggio}'.")
-        self.automobile.disponibile=True
+            raise ValueError(f"Nessun noleggio trovato con codice '{codice_noleggio}' '.")
+
+        #recupero l'identificatore della macchina
+        id_automobile = noleggioTrovato.codiceAutomobile
+
+        #cerco l'automobile corrispondente all'identificativo
+        automobile = None
+        for a in self.listaAutomobili:
+            if a.id == id_automobile:
+                automobile = a
+                break
+
+        if automobile is None:
+            raise ValueError(
+                f"L’automobile associata al noleggio '{codice_noleggio}' (ID '{id_automobile}') non è presente nel sistema.")
+
+        automobile.disponibile=True
         self.listaNoleggio.remove(noleggioTrovato)
-        print(f"il noleggio {id_noleggio} è terminato, l'automobile è nuovamente disponibile")
+        print(f"il noleggio {codice_noleggio} è terminato, l'automobile è nuovamente disponibile")
