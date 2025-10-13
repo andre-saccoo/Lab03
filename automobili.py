@@ -47,8 +47,7 @@ class Automobile:
     def numPosti(self, value):
         self._numPosti = value
 
-    # per gestire i noleggi definisco tra gli attributi anche l'attributo booleano
-    # disponibile
+    # per gestire i noleggi definisco tra gli attributi anche l'attributo booleano disponibile
     @property
     def disponibile(self):
         return self._disponibile

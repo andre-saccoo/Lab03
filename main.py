@@ -14,17 +14,20 @@ def menu():
     return input("Scegli un'opzione >> ")
 
 def main():
-    #creo l'oggetto autonoleggio
+    # creo l'oggetto autonoleggio
     autonoleggio = Autonoleggio("Polito Rent", "Alessandro Visconti")
 
     while True:
         scelta = menu()
 
+        # modificare il nome del responsabile dell'autonoleggio
         if scelta == "1":
             nuovo_responsabile = input("Inserisci il nuovo responsabile: ")
             Autonoleggio.responsabile=nuovo_responsabile
             print(f"il novo responsabile è: {Autonoleggio.responsabile}")
 
+        # provo a leggere le auto da file, ogni riga del file crea un oggetto macchina che viene messo in una
+        # lista di oggetti macchina
         elif scelta == "2":
             while True:
                 try:
@@ -34,6 +37,8 @@ def main():
                 except Exception as e:
                     print(e)
 
+        # chiedo di inserire i valori per creare un nuovo oggetto auto e aggiungerlo alla classe di oggetti
+        # controllo con le eccezioni le conversioni problematiche
         elif scelta == "3":
             marca = input("Marca: ")
             modello = input("Modello: ")
@@ -46,11 +51,13 @@ def main():
             automobile = autonoleggio.aggiungi_automobile(marca, modello, anno, posti)
             print(f"Automobile aggiunta: {automobile}")
 
+        #funzione che ordina la lista di macchine per automobile
         elif scelta == "4":
             automobili_ordinate = autonoleggio.automobili_ordinate()
             for a in automobili_ordinate:
                 print(f'- {a}')
 
+        # funzione che prende i dati in input e crea l'oggetto noleggio
         elif scelta == "5":
             id_auto = input("ID automobile: ")
             cognome_cliente = input("Cognome cliente: ")
@@ -61,6 +68,7 @@ def main():
             except Exception as e:
                 print(e)
 
+        # termino il noleggio, controllo se prima è presente il codice del noleggio
         elif scelta == "6":
             id_noleggio = input("ID noleggio da terminare: ")
             try:
@@ -69,6 +77,7 @@ def main():
             except Exception as e:
                 print(e)
 
+        #esco dal ciclo while e fermo il programma
         elif scelta == "7":
             print("Uscita dal programma...")
             break

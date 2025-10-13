@@ -3,7 +3,7 @@ import csv
 from automobili import Automobile
 from noleggio import Noleggio
 
-#creo la classe autonoleggio, possiede un nome della società e il nome del responsabile
+# creo la classe autonoleggio, possiede un nome della società e il nome del responsabile
 class Autonoleggio:
     def __init__(self, nome, responsabile):
         self._nome = nome
@@ -28,6 +28,9 @@ class Autonoleggio:
     def responsabile(self, responsabile):
         self._responsabile = responsabile
 
+    # funzione che prende dal main () il nome del file passato come argomento, usa il csv reader per leggere il file
+    # ogni riga del file corrisponde a un oggetto macchina che viene appeso alla lista di oggetti listaAutomobili se
+    # ci sono problemi nella lettura del file viene gestita dall'eccezione
     def carica_file_automobili(self, file_path):
         try:
             infile = open(file_path, "r", encoding="utf-8")
@@ -49,14 +52,14 @@ class Autonoleggio:
             print("File non trovato")
             return None
 
-    #passo i parametri dal main
+    # chiedo i parametri dal main () e creo il nuovo oggetto macchina che appendo alla lista di oggetti listaAutomobili
     def aggiungi_automobile(self, marca, modello, anno, num_posti):
         id=f"A{len(self.listaAutomobili)+1}"
         automobile = Automobile(id, marca, modello, anno, num_posti)
         self.listaAutomobili.append(automobile)
         return automobile
 
-    #prende la lista delle macchine restituisce solo la marca e ordina per attributo marca
+    # prende la lista delle macchine restituisce solo la marca e ordina per attributo marca
     def ordina(self, automobile):
         return automobile.marca
     def automobili_ordinate(self):
@@ -67,22 +70,21 @@ class Autonoleggio:
     def nuovo_noleggio(self, data, id_automobile, cognome_cliente):
         automobile=None
 
-        #scorro i codici delle auto e li confronto se la trovo esco dal ciclo
-        #perchè l'auto è presente nel sistema
+        # scorro i codici delle auto e li confronto se la trovo esco dal ciclo perchè l'auto è presente nel sistema
         for a in self.listaAutomobili:
             if a.id == id_automobile:
                 automobile=a
                 break
 
-        #se non trova l'automobile lo segnala
+        # se non trova l'automobile lo segnala
         if automobile is None:
             raise Exception(f"Automobile {id_automobile} non presente nel sistema! ")
 
-        # se l'automobile è presente ma già noleggiata
+        # se l'automobile è presente ma già noleggiata lo segnala
         if not automobile.disponibile:
             raise ValueError(f" Automobile {id_automobile} già noleggiata! ")
 
-        #se i controlli sono superati creo un nuovo codice univoco
+        # se i controlli sono superati creo un nuovo codice univoco
         self.codiceNoleggio += 1
         codice = f"N{self.codiceNoleggio}"
         noleggio=Noleggio(data, id_automobile, cognome_cliente, codice)
@@ -92,26 +94,26 @@ class Autonoleggio:
         # non termino il noleggio la macchina sarà prenotata
         automobile.disponibile=False
 
-        #restituisco il nuovo noleggio
+        # restituisco il nuovo noleggio
         return noleggio
 
 # creo la funzione che termina il noleggio e rende di nuovo disponibile la macchina per altri noleggi
     def termina_noleggio(self, codice_noleggio):
         noleggioTrovato = None
-        #cerco il noleggio con quel codice
+        # cerco il noleggio con quel codice
         for n in self.listaNoleggio:
             if n.CodiceNoleggio == codice_noleggio:
                 noleggioTrovato = n
                 break
 
-        #se non esiste restituisco errore
+        # se non esiste restituisco errore
         if noleggioTrovato is None:
             raise ValueError(f"Nessun noleggio trovato con codice '{codice_noleggio}' '.")
 
-        #recupero l'identificatore della macchina
+        # recupero l'identificatore della macchina
         id_automobile = noleggioTrovato.codiceAutomobile
 
-        #cerco l'automobile corrispondente all'identificativo
+        # cerco l'automobile corrispondente all'identificativo
         automobile = None
         for a in self.listaAutomobili:
             if a.id == id_automobile:
