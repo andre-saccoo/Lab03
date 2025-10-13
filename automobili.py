@@ -1,5 +1,8 @@
+# definisco la classe Automobile
 class Automobile:
     def __init__(self,id, marca, modello, anno, numPosti):
+        # gli attributi della classe vengono definiti come privati, la gestione è poi
+        # affidata ai metodi dei setter e getter, mantenendo il codice stabile
         self._id = id
         self._marca = marca
         self._modello = modello
@@ -7,6 +10,8 @@ class Automobile:
         self._numPosti = numPosti
         self._disponibile = True
 
+    #definisco i metodi di getter e setter per poter utilizzare e settare gli attributi
+    # come se fossero pubblici
     @property
     def id(self):
         return self._id
@@ -42,13 +47,21 @@ class Automobile:
     def numPosti(self, value):
         self._numPosti = value
 
+    # per gestire i noleggi definisco tra gli attributi anche l'attributo booleano
+    # disponibile
     @property
     def disponibile(self):
         return self._disponibile
-
     @disponibile.setter
     def disponibile(self, valore):
         self._disponibile = bool(valore)
 
+    #confronto i codici delle macchine: quando chiamo la funzione
+    def __eq__(self, oggetto2):
+        if isinstance(oggetto2, Automobile):
+            return self.id == oggetto2.id
+        return False
+
+    #funzione per stampare la classe formatata
     def __str__(self):
         return f'identificatore macchina: {self.id}, marca: {self.marca}, modello: {self.modello}, anno: {self.anno}, numero posti: {self.numPosti}'
