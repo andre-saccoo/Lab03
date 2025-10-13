@@ -48,10 +48,6 @@ def main():
             for a in automobili_ordinate:
                 print(f'- {a}')
 
-
-
-
-
         elif scelta == "5":
             id_auto = input("ID automobile: ")
             cognome_cliente = input("Cognome cliente: ")
@@ -69,9 +65,6 @@ def main():
                 print(f"Noleggio {id_noleggio} terminato con successo.")
             except Exception as e:
                 print(e)
-
-
-
 
         elif scelta == "7":
             print("Uscita dal programma...")
