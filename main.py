@@ -1,6 +1,4 @@
 from autonoleggio import Autonoleggio
-from automobili import Automobile
-from noleggio import Noleggio
 from datetime import datetime
 
 def menu():
@@ -22,7 +20,7 @@ def main():
 
         if scelta == "1":
             nuovo_responsabile = input("Inserisci il nuovo responsabile: ")
-            # TODO: Aggiorna responsabile nel sistema
+            Autonoleggio.nome=nuovo_responsabile
 
         elif scelta == "2":
             while True:
@@ -50,6 +48,10 @@ def main():
             for a in automobili_ordinate:
                 print(f'- {a}')
 
+
+
+
+
         elif scelta == "5":
             id_auto = input("ID automobile: ")
             cognome_cliente = input("Cognome cliente: ")
@@ -67,6 +69,9 @@ def main():
                 print(f"Noleggio {id_noleggio} terminato con successo.")
             except Exception as e:
                 print(e)
+
+
+
 
         elif scelta == "7":
             print("Uscita dal programma...")

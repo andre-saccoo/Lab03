@@ -3,7 +3,7 @@ import csv
 
 #creo la classe autonoleggio, possiede un nome della società e il nome del responsabile
 class Autonoleggio:
-    def __init__(self, nome, responsabile,listaAutomobili):
+    def __init__(self, nome, responsabile):
 
         self._nome = nome
         self._responsabile = responsabile
@@ -51,14 +51,12 @@ class Autonoleggio:
         self.listaAutomobili.append(automobile)
         return automobile
 
-    def ordina(self automobile):
+
+    def ordina(self, automobile):
         return automobile.marca
-
-    def automobili_ordinate_per_marca(self):
-        listaAutomobiliOrdinata=sorted(self.listaAutomobili, key=ordina)
-
-
-
+    def automobili_ordinate(self):
+        listaAutomobiliOrdinata=sorted(self.listaAutomobili, key=self.ordina)
+        return listaAutomobiliOrdinata
 
     def nuovo_noleggio(self, data, id_automobile, cognome_cliente):
         """Crea un nuovo noleggio"""
