@@ -1,6 +1,5 @@
-from automobili import Automobile
 import csv
-
+from automobili import Automobile
 from noleggio import Noleggio
 
 #creo la classe autonoleggio, possiede un nome della società e il nome del responsabile
@@ -56,11 +55,14 @@ class Autonoleggio:
         self.listaAutomobili.append(automobile)
         return automobile
 
+    #prende la lista delle macchine restituisce solo la marca e ordina per attributo marca
     def ordina(self, automobile):
         return automobile.marca
     def automobili_ordinate(self):
         return sorted(self.listaAutomobili, key=self.ordina)
 
+    # definisco la funzione che gestisce i nuovi noleggi, inseriti in una lista di oggetti noleggio definita sopra
+    # la funzione controlla che la moto sia noleggiabile, se è disponibile dopo averla presa la rende non disponibile
     def nuovo_noleggio(self, data, id_automobile, cognome_cliente):
         trovato=False
         automobile=None
