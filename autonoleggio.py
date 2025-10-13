@@ -44,27 +44,21 @@ class Autonoleggio:
             print("File non trovato")
             return None
 
+    #passo i parametri dal main
+    def aggiungi_automobile(self, marca, modello, anno, num_posti):
+        id=f"A{len(self.listaAutomobili)+1}"
+        automobile = Automobile(id, marca, modello, anno, num_posti)
+        self.listaAutomobili.append(automobile)
+        return automobile
 
-    def aggiungi_automobile(self, marca, modello, anno, num_posti, ):
-        """Aggiunge un'automobile nell'autonoleggio: aggiunge solo nel sistema e non aggiorna il file"""
-        id=f"A+{len(self.listaAutomobili)+1}"
-        marca=input("inserire la marca dell'automobile: ")
-        modello=input("inserire la modello dell'automobile: ")
-        try:
-            anno=input("inserire la anno dell'automobile: ")
-        except ValueError:
-            print("inserire la anno dell'automobile:")
-        try:
-            num_posti=int(input("inserire la numero posti: "))
-        except ValueError:
-            print("inserire la numero posti:")
-
-
-
+    def ordina(self automobile):
+        return automobile.marca
 
     def automobili_ordinate_per_marca(self):
-        """Ordina le automobili per marca in ordine alfabetico"""
-        # TODO
+        listaAutomobiliOrdinata=sorted(self.listaAutomobili, key=ordina)
+
+
+
 
     def nuovo_noleggio(self, data, id_automobile, cognome_cliente):
         """Crea un nuovo noleggio"""
