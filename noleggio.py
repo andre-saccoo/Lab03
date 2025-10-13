@@ -1,5 +1,5 @@
 class Noleggio():
-    def __init__(self, codiceNoleggio, dataInizio, codiceAutomobile, cognome):
+    def __init__(self, dataInizio, codiceAutomobile, cognome , codiceNoleggio):
         self._codiceNoleggio=codiceNoleggio
         self._dataInizio=dataInizio
         self._codiceAutomobile=codiceAutomobile
