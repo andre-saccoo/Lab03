@@ -2,7 +2,7 @@ from autonoleggio import Autonoleggio
 from automobili import Automobile
 from noleggio import Noleggio
 from datetime import datetime
-
+'''
 def menu():
     print("\n--- MENU AUTONOLEGGIO ---")
     print("1. Modifica nome del responsabile dell’autonoleggio")
@@ -76,3 +76,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+'''
+import csv
+def main():
+    carica_file_automobili("automobili.csv")
+
+
+main()
