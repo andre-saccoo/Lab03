@@ -20,8 +20,8 @@ def main():
 
         if scelta == "1":
             nuovo_responsabile = input("Inserisci il nuovo responsabile: ")
-            Autonoleggio.nome=nuovo_responsabile
-            print(f"il novo responsabile è: {Autonoleggio.nome}")
+            Autonoleggio.responsabile=nuovo_responsabile
+            print(f"il novo responsabile è: {Autonoleggio.responsabile}")
 
         elif scelta == "2":
             while True:

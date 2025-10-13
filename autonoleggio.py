@@ -1,5 +1,4 @@
 import csv
-from enum import nonmember
 
 from automobili import Automobile
 from noleggio import Noleggio

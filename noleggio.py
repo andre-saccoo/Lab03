@@ -33,7 +33,7 @@ class Noleggio():
         self._cognome=cognome
 
     def __str__(self):
-        return (f"Noleggio N{self._codiceNoleggio}: "
+        return (f"Noleggio {self._codiceNoleggio}: "
                 f"data inizio = {self._dataInizio}, "
                 f"auto = {self._codiceAutomobile}, "
                 f"cliente = {self._cognome}")
