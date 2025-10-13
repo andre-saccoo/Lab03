@@ -21,6 +21,7 @@ def main():
         if scelta == "1":
             nuovo_responsabile = input("Inserisci il nuovo responsabile: ")
             Autonoleggio.nome=nuovo_responsabile
+            print(f"il novo responsabile è: {Autonoleggio.nome}")
 
         elif scelta == "2":
             while True:
@@ -44,7 +45,7 @@ def main():
             print(f"Automobile aggiunta: {automobile}")
 
         elif scelta == "4":
-            automobili_ordinate = autonoleggio.automobili_ordinate_per_marca()
+            automobili_ordinate = autonoleggio.automobili_ordinate()
             for a in automobili_ordinate:
                 print(f'- {a}')
 
