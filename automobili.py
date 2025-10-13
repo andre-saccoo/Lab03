@@ -56,12 +56,6 @@ class Automobile:
     def disponibile(self, valore):
         self._disponibile = bool(valore)
 
-    #confronto i codici delle macchine: quando chiamo la funzione
-    def __eq__(self, oggetto2):
-        if isinstance(oggetto2, Automobile):
-            return self.id == oggetto2.id
-        return False
-
-    #funzione per stampare la classe formatata
+    #funzione per stampare la classe formattata
     def __str__(self):
         return f'identificatore macchina: {self.id}, marca: {self.marca}, modello: {self.modello}, anno: {self.anno}, numero posti: {self.numPosti}'

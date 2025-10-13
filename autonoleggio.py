@@ -12,6 +12,8 @@ class Autonoleggio:
         self.listaNoleggio = []
         self.codiceNoleggio = 0
 
+    # per gli attributi della classe definisco i metodi setter e getter per utilizzare gli
+    # attributi definiti privati come se fossero pubblici
     @property
     def nome(self):
         return self._nome
@@ -60,12 +62,37 @@ class Autonoleggio:
         return sorted(self.listaAutomobili, key=self.ordina)
 
     def nuovo_noleggio(self, data, id_automobile, cognome_cliente):
+        trovato=False
+        automobile=None
 
-        self.codiceNoleggio+=1
-        noleggio=Noleggio(data, id_automobile, cognome_cliente, self.codiceNoleggio)
+        #scorro i codici delle auto e li confronto se la trovo esco dal ciclo
+        #perchè l'auto è presente nel sistema
+        for a in self.listaAutomobili:
+            if a.id == id_automobile:
+                trovato=True
+                automobile=a
+                break
+
+        #se non trova l'automobile lo segnala
+        if  not trovato:
+            raise Exception(f"Automobile {id_automobile} non presente nel sistema! ")
+
+        # se l'automobile è presente ma già noleggiata
+        if not automobile.disponibile:
+            raise ValueError(f" Automobile {id_automobile} già noleggiata! ")
+
+        #se i controlli sono superati
+        self.codiceNoleggio += 1
+        codice = f"N{self.codiceNoleggio}"
+        noleggio=Noleggio(data, id_automobile, cognome_cliente, codice)
         self.listaNoleggio.append(noleggio)
+
+        # rendo la macchina noleggiata, nel tentativo successivo se
+        # non termino il noleggio la macchina sarà prenotata
+        automobile.disponibile=False
+
+        #restituisco il nuovo noleggio
         return noleggio
 
     def termina_noleggio(self, id_noleggio):
-        """Termina un noleggio in atto"""
-        # TODO
+        pass
