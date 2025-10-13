@@ -1,6 +1,7 @@
 from autonoleggio import Autonoleggio
 from datetime import datetime
 
+#creo la funzione che stampa il menù che gestisce il programma, itera fino a quando l'utente non chide l'uscita
 def menu():
     print("\n--- MENU AUTONOLEGGIO ---")
     print("1. Modifica nome del responsabile dell’autonoleggio")
@@ -13,6 +14,7 @@ def menu():
     return input("Scegli un'opzione >> ")
 
 def main():
+    #creo l'oggetto autonoleggio
     autonoleggio = Autonoleggio("Polito Rent", "Alessandro Visconti")
 
     while True:
