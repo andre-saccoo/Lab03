@@ -5,6 +5,7 @@ class Automobile:
         self._modello = modello
         self._anno = anno
         self._numPosti = numPosti
+        self._disponibile = True
 
     @property
     def id(self):
@@ -40,6 +41,14 @@ class Automobile:
     @numPosti.setter
     def numPosti(self, value):
         self._numPosti = value
+
+    @property
+    def disponibile(self):
+        return self._disponibile
+
+    @disponibile.setter
+    def disponibile(self, valore):
+        self._disponibile = bool(valore)
 
     def __str__(self):
         return f'identificatore macchina: {self.id}, marca: {self.marca}, modello: {self.modello}, anno: {self.anno}, numero posti: {self.numPosti}'

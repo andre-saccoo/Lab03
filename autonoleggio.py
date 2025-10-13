@@ -60,6 +60,7 @@ class Autonoleggio:
         return sorted(self.listaAutomobili, key=self.ordina)
 
     def nuovo_noleggio(self, data, id_automobile, cognome_cliente):
+
         self.codiceNoleggio+=1
         noleggio=Noleggio(data, id_automobile, cognome_cliente, self.codiceNoleggio)
         self.listaNoleggio.append(noleggio)
